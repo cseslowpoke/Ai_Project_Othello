@@ -35,6 +35,8 @@ public:
         if (gb.makeLegalBoard() == 0)
             return -1;
 
+        pair<int, int> res = minimax(gb, min_max_depth, MX, -DBL_MAX, DBL_MAX);
+
         return res.first;
     }
     bool gameOver(bitboard gb)
