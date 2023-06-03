@@ -16,7 +16,7 @@ class dai : public ai {
       std::cout << "dai" << std::endl;
     }
   private:
-    int depth = 11;
+    int depth = 9;
     evaluation* e;
 };
 
@@ -49,6 +49,7 @@ int dai::move(std::string checker) {
     legalBoard ^= put;
     bitboard tmp = b;
     tmp.reverse(put);
+    tmp.swap();
     int score = -negaalpha(tmp, depth - 1, false, -10000000, 10000000);
     if (score > maxscore) {
       maxscore = score;
@@ -79,6 +80,7 @@ int dai::negaalpha(bitboard b, int depth, bool passed, int alpha, int beta) {
     legalBoard ^= put;
     bitboard tmp = b;
     tmp.reverse(put);
+    tmp.swap();
     int score = -negaalpha(tmp, depth - 1, false, -beta, -alpha);
     if (score >= beta) {
       return beta;
@@ -86,6 +88,7 @@ int dai::negaalpha(bitboard b, int depth, bool passed, int alpha, int beta) {
     alpha = std::max(alpha, score);
     maxscore = std::max(maxscore, score);
   }
+
   if (maxscore == -10000000) {
     if (passed) {
       return e->eval(b);
@@ -96,6 +99,3 @@ int dai::negaalpha(bitboard b, int depth, bool passed, int alpha, int beta) {
   }
   return maxscore;
 }
-
-
-
