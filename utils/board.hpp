@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <iostream>
 class board {
   public:
     board() {
@@ -9,6 +10,7 @@ class board {
     }
     void move(int);
     void result();
+    void game();
     std::string nowBoard;
     std::string change;
   private:
@@ -59,4 +61,15 @@ void board::result() {
     }
   }
   printf("black %d:%d white\n", black, white);
+}
+
+void board::game() {
+  std::cout << "\n\n\n";
+  for(int i = 0; i < 8; i++) {
+    for(int j = 0; j < 8; j++) {
+      std::cout << nowBoard[i * 8 + j] << ' ';
+    }
+    std::cout << '\n';
+  }
+  result();
 }

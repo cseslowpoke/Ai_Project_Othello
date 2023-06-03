@@ -7,7 +7,11 @@ int vis = 0;
 class dai : public ai {
   public:
     dai(int _player): ai(_player) {
-      e = new simpleEvaluation();
+      e = new normalEvaluation();
+      player = _player;
+    }
+    dai(int _player, evaluation* _e): ai(_player)  {
+      e = _e;
       player = _player;
     }
     int move(std::string board);
@@ -16,14 +20,13 @@ class dai : public ai {
       std::cout << "dai" << std::endl;
     }
   private:
-    int depth = 9;
+    int depth = 10;
     evaluation* e;
 };
 
 int dai::move(std::string checker) {
+
   vis = 0;
-  chrono::system_clock::time_point start, end;
-  start = chrono::system_clock::now();
   ull black = 0, white = 0;
   bitboard b;
   for (int i = 0; i < 64; i++) {
@@ -40,7 +43,6 @@ int dai::move(std::string checker) {
   else {
     b.setBoard(black, white);
   }
-  ull c = b.makeLegalBoard();
   ull legalBoard = b.makeLegalBoard(), put;
   int maxscore = -10000000;
   ull maxput = 0;
@@ -57,9 +59,6 @@ int dai::move(std::string checker) {
     }
   }
 
-  end = chrono::system_clock::now();
-  cout << "time: " << chrono::duration_cast<chrono::microseconds>(end - start).count() << "\n";
-  cout << "vis: " << vis << "\n";
   for(int i = 0; i < 64; i++) {
     if (maxput & (1ULL << i)) {
       return i;

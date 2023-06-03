@@ -9,6 +9,9 @@ all: main.cpp
 clean:
 	rm -rf *.o 
 
+noSDL: noSDL_main.cpp
+	$(CXX) $(CXXFLAGS) -o main.o noSDL_main.cpp $(CXXLIBS)
+	@./main.o
 indent:
 	@clang-format -i main.cpp
 	@clang-format -i robot/*.hpp
