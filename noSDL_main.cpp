@@ -1,9 +1,9 @@
 // #include "utils/render.hpp"
-#include "utils/board.hpp"
 #include "agent/aiFactor.hpp"
 #include "agent/utils/evaluation.hpp"
-int main(int argv, char* argc[]) {
-  ai* player[2];
+#include "utils/board.hpp"
+int main(int argv, char *argc[]) {
+  ai *player[2];
   int black, white;
   cout << "黑方 (0: Dai 1: Hua 2: Yu)：";
   cin >> black;
@@ -15,7 +15,7 @@ int main(int argv, char* argc[]) {
   board gameBoard;
   bool end = false;
   int Player = 0;
-  while(!end) {
+  while (!end) {
     int move = player[Player]->move(gameBoard.nowBoard);
     Player = !Player;
     if (move == -1) {
@@ -24,12 +24,10 @@ int main(int argv, char* argc[]) {
       if (move == -1) {
         end = true;
         continue;
-      }
-      else {
+      } else {
         gameBoard.move(move);
       }
-    }
-    else {
+    } else {
       gameBoard.move(move);
     }
     gameBoard.game();
