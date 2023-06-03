@@ -1,8 +1,9 @@
 #pragma once
-#include "utils/bitboard.hpp"
+#include "utils/bitBoard.hpp"
 #include "utils/evaluation.hpp"
 #include "ai.hpp"
-
+#include <chrono>
+int vis = 0;
 class dai : public ai {
   public:
     dai(int _player): ai(_player) {
@@ -15,11 +16,14 @@ class dai : public ai {
       std::cout << "dai" << std::endl;
     }
   private:
-    int depth = 10;
+    int depth = 11;
     evaluation* e;
 };
 
 int dai::move(std::string checker) {
+  vis = 0;
+  chrono::system_clock::time_point start, end;
+  start = chrono::system_clock::now();
   ull black = 0, white = 0;
   bitboard b;
   for (int i = 0; i < 64; i++) {
@@ -51,6 +55,10 @@ int dai::move(std::string checker) {
       maxput = put;
     }
   }
+
+  end = chrono::system_clock::now();
+  cout << "time: " << chrono::duration_cast<chrono::microseconds>(end - start).count() << "\n";
+  cout << "vis: " << vis << "\n";
   for(int i = 0; i < 64; i++) {
     if (maxput & (1ULL << i)) {
       return i;
@@ -60,6 +68,7 @@ int dai::move(std::string checker) {
 }
 
 int dai::negaalpha(bitboard b, int depth, bool passed, int alpha, int beta) {
+  vis++;
   if (depth == 0) {
     return e->eval(b);
   }
@@ -87,5 +96,6 @@ int dai::negaalpha(bitboard b, int depth, bool passed, int alpha, int beta) {
   }
   return maxscore;
 }
+
 
 

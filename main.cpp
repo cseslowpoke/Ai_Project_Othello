@@ -10,8 +10,8 @@ int main(int argv, char* argc[]) {
   cout << "白方： 0: Dai 1: Hua 2: Yu：";
   int white;
   cin >> white;
-  player[0] = aiFactor::createAi(HUA, 0);
-  player[1] = aiFactor::createAi(DAI, 1);
+  player[0] = aiFactor::createAi(DAI, 0);
+  player[1] = aiFactor::createAi(HUA, 1);
   player[0]->name();
   player[1]->name();
   sdl r;
@@ -56,41 +56,8 @@ int main(int argv, char* argc[]) {
     }
     r.displayBoard(gameBoard);
   }
-  // while (!quit) {
-  //   SDL_Event event;
-  //   while (SDL_PollEvent(&event)) {
-  //     switch (event.type) {
-  //       case SDL_QUIT:
-  //         quit = true;
-  //         break;
-  //       case SDL_KEYDOWN:
-  //         if (end == true) {
-  //           continue;
-  //         }
-  //         if (event.key.keysym.sym == SDLK_RETURN) {
-  //           int move = player[Player]->move(board_to_string(b));
-  //           Player = !Player;
-  //           if (move == -1) {
-  //             move = player[Player]->move(board_to_string(b));
-  //             Player = !Player;
-  //             if (move == -1) {
-  //               end = true;
-  //               break;
-  //             }
-  //             else {
-  //               board_move(b, move, Player);
-  //             }
-  //             continue;
-  //           }
-  //           else {
-  //             board_move(b, move, Player);
-  //           }
-  //         }
-  //         break;
-  //     }
-  //   }
-  //   r.board(board_to_string(b));
-  // }
+
   r.quit();
+  gameBoard.result();
   return 0;
 }

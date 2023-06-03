@@ -1,6 +1,6 @@
 
 #pragma once
-#include "utils/bitboard.hpp"
+#include "utils/bitBoard.hpp"
 #include "ai.hpp"
 #include <vector>
 #include <ctime>
@@ -133,15 +133,15 @@ public:
                 }
             }
         }
-        if (depth == min_max_depth)
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                    cout << res_arr[i][j] << " ";
-                cout << "\n";
-            }
-        }
+        // if (depth == min_max_depth)
+        // {
+        //     for (int i = 0; i < 8; i++)
+        //     {
+        //         for (int j = 0; j < 8; j++)
+        //             cout << res_arr[i][j] << " ";
+        //         cout << "\n";
+        //     }
+        // }
         return res;
     }
     

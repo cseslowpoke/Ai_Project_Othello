@@ -8,6 +8,7 @@ class board {
       player = 0;
     }
     void move(int);
+    void result();
     std::string nowBoard;
     std::string change;
   private:
@@ -45,4 +46,17 @@ void board::move(int move) {
   change[move] = '+';
   nowBoard[move] = (player ? 'O' : 'X');
   player = !player;
+}
+
+void board::result() {
+  int black = 0, white = 0;
+  for (auto i:nowBoard) {
+    if (i == 'X') {
+      black++;
+    }
+    else if (i == 'O') {
+      white++;
+    }
+  }
+  printf("black %d:%d white\n", black, white);
 }
