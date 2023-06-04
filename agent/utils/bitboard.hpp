@@ -1,42 +1,43 @@
 #pragma once
 
 // make a bitboard class
-using ull=unsigned long long;
+using ull = unsigned long long;
 
 ull transfer(ull put, int k) {
-  switch(k) {
-    case 0: //上
-      return (put << 8) & 0xffffffffffffff00;
-    case 1: //右上
-      return (put << 7) & 0x7f7f7f7f7f7f7f00;
-    case 2: //右
-      return (put >> 1) & 0x7f7f7f7f7f7f7f7f;
-    case 3: //右下
-      return (put >> 9) & 0x007f7f7f7f7f7f7f;
-    case 4: //下
-      return (put >> 8) & 0x00ffffffffffffff;
-    case 5: //左下
-      return (put >> 7) & 0x00fefefefefefefe;
-    case 6: //左
-      return (put << 1) & 0xfefefefefefefefe;
-    case 7: //左上
-      return (put << 9) & 0xfefefefefefefe00;
-    default:
-      return 0;
+  switch (k) {
+  case 0: // 上
+    return (put << 8) & 0xffffffffffffff00;
+  case 1: // 右上
+    return (put << 7) & 0x7f7f7f7f7f7f7f00;
+  case 2: // 右
+    return (put >> 1) & 0x7f7f7f7f7f7f7f7f;
+  case 3: // 右下
+    return (put >> 9) & 0x007f7f7f7f7f7f7f;
+  case 4: // 下
+    return (put >> 8) & 0x00ffffffffffffff;
+  case 5: // 左下
+    return (put >> 7) & 0x00fefefefefefefe;
+  case 6: // 左
+    return (put << 1) & 0xfefefefefefefefe;
+  case 7: // 左上
+    return (put << 9) & 0xfefefefefefefe00;
+  default:
+    return 0;
   }
 }
 
 class bitboard {
-  public:
-    int player = 0;
-    ull playerBoard = 0, opponentBoard = 0;
-    bitboard(){}
-    void setBoard(ull _playerBoard, ull _opponentBoard);
-    bool canPut(ull put);
-    void reverse(ull put);
-    ull makeLegalBoard();
-    void swap();
-  private:
+public:
+  int player = 0;
+  ull playerBoard = 0, opponentBoard = 0;
+  bitboard() {}
+  void setBoard(ull _playerBoard, ull _opponentBoard);
+  bool canPut(ull put);
+  void reverse(ull put);
+  ull makeLegalBoard();
+  void swap();
+
+private:
 };
 
 void bitboard::reverse(ull put) {
@@ -64,7 +65,7 @@ ull bitboard::makeLegalBoard() {
   ull tmp;
   ull legalBoard = 0;
 
-  //left
+  // left
   tmp = horiBoard & (playerBoard << 1);
   tmp |= horiBoard & (tmp << 1);
   tmp |= horiBoard & (tmp << 1);
@@ -73,7 +74,7 @@ ull bitboard::makeLegalBoard() {
   tmp |= horiBoard & (tmp << 1);
   legalBoard = blankBoard & (tmp << 1);
 
-  //right
+  // right
   tmp = horiBoard & (playerBoard >> 1);
   tmp |= horiBoard & (tmp >> 1);
   tmp |= horiBoard & (tmp >> 1);
@@ -82,7 +83,7 @@ ull bitboard::makeLegalBoard() {
   tmp |= horiBoard & (tmp >> 1);
   legalBoard |= blankBoard & (tmp >> 1);
 
-  //top
+  // top
   tmp = vertBoard & (playerBoard << 8);
   tmp |= vertBoard & (tmp << 8);
   tmp |= vertBoard & (tmp << 8);
@@ -91,7 +92,7 @@ ull bitboard::makeLegalBoard() {
   tmp |= vertBoard & (tmp << 8);
   legalBoard |= blankBoard & (tmp << 8);
 
-  //down
+  // down
   tmp = vertBoard & (playerBoard >> 8);
   tmp |= vertBoard & (tmp >> 8);
   tmp |= vertBoard & (tmp >> 8);
@@ -125,7 +126,6 @@ ull bitboard::makeLegalBoard() {
   tmp |= aSideBoard & (tmp >> 9);
   legalBoard |= blankBoard & (tmp >> 9);
 
-
   tmp = aSideBoard & (playerBoard >> 7);
   tmp |= aSideBoard & (tmp >> 7);
   tmp |= aSideBoard & (tmp >> 7);
@@ -133,7 +133,6 @@ ull bitboard::makeLegalBoard() {
   tmp |= aSideBoard & (tmp >> 7);
   tmp |= aSideBoard & (tmp >> 7);
   legalBoard |= blankBoard & (tmp >> 7);
-
 
   return legalBoard;
 }

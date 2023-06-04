@@ -1,10 +1,9 @@
-#include <bits/stdc++.h>
-#include "utils/bitboard.hpp"
 #include "ai.hpp"
+#include "utils/bitboard.hpp"
+#include <bits/stdc++.h>
 using namespace std;
 
-class min_max_monte_carlo : public ai
-{
+class min_max_monte_carlo : public ai {
 public:
     min_max_monte_carlo(int _player) : ai(_player) {}
     min_max_monte_carlo(int _player, int _min_max_depth, int _monte_carlo_times) : ai(_player)
@@ -106,44 +105,38 @@ public:
         return res;
     }
 
-    double monte_carlo(bitboard gb)
-    {
-        int score = 0;
-        for (int i = 0; i < monte_carlo_times; i++)
-        {
-            score += stimulate(gb);
-        }
-
-        return (double)score / (double)monte_carlo_times;
+  double monte_carlo(bitboard gb) {
+    int score = 0;
+    for (int i = 0; i < monte_carlo_times; i++) {
+      score += stimulate(gb);
     }
-    int stimulate(bitboard gb)
-    {
-        ull blank_gb;
-        int swap_cnt=0;
-        while (!gameOver(gb))
-        {
-            ull legalBoard = gb.makeLegalBoard();
-            if (legalBoard == 0)
-            {
-                gb.swap();
-                swap_cnt++;
-                continue;
-            }
-            vector<int> legal_pos;
-            int pos;
-            while (legalBoard > 0)
-            {
-                pos = __builtin_ffsll(legalBoard);
-                legal_pos.push_back(pos - 1);
-                legalBoard &= (legalBoard - 1);
-            }
-            pos = legal_pos[rand() % legal_pos.size()];
-            gb.reverse(1ULL << pos);
-            gb.swap();
-            swap_cnt++;
-        }
-        if(swap_cnt&1)
-            gb.swap();
+
+    return (double)score / (double)monte_carlo_times;
+  }
+  int stimulate(bitboard gb) {
+    ull blank_gb;
+    int swap_cnt = 0;
+    while (!gameOver(gb)) {
+      ull legalBoard = gb.makeLegalBoard();
+      if (legalBoard == 0) {
+        gb.swap();
+        swap_cnt++;
+        continue;
+      }
+      vector<int> legal_pos;
+      int pos;
+      while (legalBoard > 0) {
+        pos = __builtin_ffsll(legalBoard);
+        legal_pos.push_back(pos - 1);
+        legalBoard &= (legalBoard - 1);
+      }
+      pos = legal_pos[rand() % legal_pos.size()];
+      gb.reverse(1ULL << pos);
+      gb.swap();
+      swap_cnt++;
+    }
+    if (swap_cnt & 1)
+      gb.swap();
 
         int player_cnt = __builtin_popcountll(gb.playerBoard);
         int oppo_cnt = __builtin_popcountll(gb.opponentBoard);
