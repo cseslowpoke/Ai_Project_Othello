@@ -1,9 +1,6 @@
-#pragma once
+#include "bitBoard.h"
 
-// make a bitboard class
-using ull = unsigned long long;
-
-ull transfer(ull put, int k) {
+ull bitboard::transfer(ull put, int k) {
   switch (k) {
   case 0: // 上
     return (put << 8) & 0xffffffffffffff00;
@@ -25,20 +22,6 @@ ull transfer(ull put, int k) {
     return 0;
   }
 }
-
-class bitboard {
-public:
-  int player = 0;
-  ull playerBoard = 0, opponentBoard = 0;
-  bitboard() {}
-  void setBoard(ull _playerBoard, ull _opponentBoard);
-  bool canPut(ull put);
-  void reverse(ull put);
-  ull makeLegalBoard();
-  void swap();
-
-private:
-};
 
 void bitboard::reverse(ull put) {
   ull rev = 0;

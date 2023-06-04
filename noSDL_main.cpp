@@ -1,6 +1,6 @@
 // #include "utils/render.hpp"
 #include "agent/aiFactor.hpp"
-#include "agent/utils/evaluation.hpp"
+#include "agent/utils/evaluation.h"
 #include "utils/board.hpp"
 int main(int argv, char *argc[]) {
   ai *player[2];

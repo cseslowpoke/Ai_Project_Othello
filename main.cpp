@@ -1,5 +1,5 @@
 #include "agent/aiFactor.hpp"
-#include "agent/utils/evaluation.hpp"
+#include "agent/utils/evaluation.h"
 #include "utils/board.hpp"
 #include "utils/render.hpp"
 int main(int argv, char *argc[]) {
