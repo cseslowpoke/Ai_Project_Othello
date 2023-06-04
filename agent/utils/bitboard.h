@@ -1,5 +1,5 @@
 #pragma once
-
+#include <cstddef>
 // make a bitboard class
 using ull = unsigned long long;
 class bitboard {
@@ -13,4 +13,11 @@ public:
   ull makeLegalBoard();
   void swap();
   ull transfer(ull, int);
+ struct hash {
+    typedef size_t result_type;
+    size_t operator()(const bitboard& b) const {
+        return
+          b.playerBoard ^ b.opponentBoard;
+    }
+};
 };

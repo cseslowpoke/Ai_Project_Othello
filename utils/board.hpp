@@ -23,7 +23,6 @@ private:
 };
 
 void board::move(int move) {
-  int flag = 1;
   change = "----------------------------------------------------------------";
   if (move == -1) {
     player = !player;
@@ -46,7 +45,6 @@ void board::move(int move) {
         nowBoard[x_ * 8 + y_] = (player ? 'O' : 'X');
         x_ -= dir[i][0];
         y_ -= dir[i][1];
-        flag = 0;
       }
     }
   }

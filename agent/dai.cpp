@@ -1,8 +1,10 @@
 #include "dai.h"
+int vis = 0;
 void dai::name() {
   std::cout << "dai2" << std::endl;
 }
 int dai::move(std::string checker) {
+  vis = 0;
   ull black = 0, white = 0;
   bitboard b;
   for (int i = 0; i < 64; i++) {
@@ -32,7 +34,7 @@ int dai::move(std::string checker) {
       maxput = put;
     }
   }
-
+  std::cout << "vis:" << vis << '\n';
   for (int i = 0; i < 64; i++) {
     if (maxput & (1ULL << i)) {
       return i;
@@ -42,6 +44,7 @@ int dai::move(std::string checker) {
 }
 
 int dai::nega_alpha(bitboard &b, int depth, bool passed, int alpha, int beta) {
+  vis++;
   if (depth == 0) {
     return e->eval(b);
   }

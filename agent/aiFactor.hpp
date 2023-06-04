@@ -17,7 +17,7 @@ public:
     case YU:
       return new CBplayer(way, scoreboard, depth);
     default:
-      return NULL;
+      return new dai(way);
     }
   }
 };
