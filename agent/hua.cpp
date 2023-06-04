@@ -127,5 +127,7 @@ int min_max_monte_carlo::stimulate(bitboard gb) {
   int player_cnt = __builtin_popcountll(gb.playerBoard);
   int oppo_cnt = __builtin_popcountll(gb.opponentBoard);
   int dif = abs(player_cnt - oppo_cnt);
-  return (player_cnt > oppo_cnt ? 64 + dif : -(64 + dif));
+  int res=(player_cnt > oppo_cnt ? 64 + dif : -(64 + dif));
+
+  return (min_max_depth&1 ? -res : res);
 }
