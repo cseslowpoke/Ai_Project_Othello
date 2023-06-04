@@ -13,7 +13,7 @@ int main(int argv, char *argc[]) {
   cout << "白方 (0: Dai 1: Hua 2: Yu)：";
   cin >> white;
 
-  player[0] = aiFactor::createAi(HUA, 0);
+  player[0] = aiFactor::createAi(YU, 0, NULL, 3, 9);
   player[1] = aiFactor::createAi(DAI, 1, new normalEvaluation());
 
 
