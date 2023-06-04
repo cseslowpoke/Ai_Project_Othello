@@ -4,6 +4,7 @@
 #include "utils/evaluation.h"
 #include <chrono>
 #include <iostream>
+#include <map>
 class dai : public ai {
 public:
   dai(int _player) : ai(_player) {
@@ -20,7 +21,7 @@ public:
 private:
   int depth = 10;
   evaluation *e;
-  unordered_map<board, int, board::hash> transpose_table;          // 現在の探索結果を入れる置換表: 同じ局面に当たった時用
-  unordered_map<board, int, board::hash> former_transpose_table;   // 前回の探索結果が入る置換表: move orderingに使う
+  // unordered_map<board, int, board::hash> transpose_table;         
+  // unordered_map<board, int, board::hash> former_transpose_table;   
 };
 
