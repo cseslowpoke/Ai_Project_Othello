@@ -1,5 +1,5 @@
-#include "dai.hpp"
-#include "hua.hpp"
+#include "dai.h"
+#include "hua.h"
 #include "CBplayer.h"
 enum aiType { DAI, HUA, YU };
 

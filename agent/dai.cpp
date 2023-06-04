@@ -1,32 +1,5 @@
-#pragma once
-#include "ai.hpp"
-#include "utils/bitBoard.hpp"
-#include "utils/evaluation.hpp"
-#include <chrono>
-#include <iostream>
-int vis = 0;
-class dai : public ai {
-public:
-  dai(int _player) : ai(_player) {
-    e = new normalEvaluation();
-    player = _player;
-  }
-  dai(int _player, evaluation *_e) : ai(_player) {
-    e = _e;
-    player = _player;
-  }
-  int move(std::string board);
-  int nega_alpha(bitboard &b, int depth, bool passed, int alpha, int beta);
-  void name() { std::cout << "dai" << std::endl; }
-
-private:
-  int depth = 10;
-  evaluation *e;
-};
-
+#include "dai.h"
 int dai::move(std::string checker) {
-
-  vis = 0;
   ull black = 0, white = 0;
   bitboard b;
   for (int i = 0; i < 64; i++) {
@@ -66,7 +39,6 @@ int dai::move(std::string checker) {
 }
 
 int dai::nega_alpha(bitboard &b, int depth, bool passed, int alpha, int beta) {
-  vis++;
   if (depth == 0) {
     return e->eval(b);
   }
