@@ -1,6 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "ai.hpp"
+#include "ai.h"
 #define fir first
 #define sec second
 #define inf 0x3f3f3f3f

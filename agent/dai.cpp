@@ -1,4 +1,7 @@
 #include "dai.h"
+void dai::name() {
+  std::cout << "dai2" << std::endl;
+}
 int dai::move(std::string checker) {
   ull black = 0, white = 0;
   bitboard b;

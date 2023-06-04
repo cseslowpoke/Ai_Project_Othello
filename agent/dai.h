@@ -1,5 +1,5 @@
 #pragma once
-#include "ai.hpp"
+#include "ai.h"
 #include "utils/bitboard.h"
 #include "utils/evaluation.h"
 #include <chrono>
@@ -16,7 +16,7 @@ public:
   }
   int move(std::string board);
   int nega_alpha(bitboard &b, int depth, bool passed, int alpha, int beta);
-  void name() { std::cout << "dai" << std::endl; }
+  void name();
 
 private:
   int depth = 10;

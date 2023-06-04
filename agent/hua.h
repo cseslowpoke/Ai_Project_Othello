@@ -1,4 +1,4 @@
-#include "ai.hpp"
+#include "ai.h"
 #include "utils/bitboard.h"
 #include <bits/stdc++.h>
 using namespace std;

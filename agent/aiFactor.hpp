@@ -16,6 +16,8 @@ public:
       return new min_max_monte_carlo(way, 4, 40);
     case YU:
       return new CBplayer(way, scoreboard, depth);
+    default:
+      return NULL;
     }
   }
 };
