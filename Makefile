@@ -25,13 +25,9 @@ $(EXEC1): $(OBJ) $(MAIN_OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(CXXLIBS)
 
 $(EXEC2): $(OBJ) $(NOSDL_MAIN_OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(CXXLIBS)
+	$(CXX) -Wall -o $@ $^
 
-# obj/%.o: %.cpp
-# 	@mkdir -p $(@D)
-# 	$(CXX) $(CXXFLAGS) -c $< -o $@ $(CXXLIBS)
 obj/%.o: %.cpp
-	echo aa
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -c $< -o $@ $(CXXLIBS)
 

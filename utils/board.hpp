@@ -50,9 +50,6 @@ void board::move(int move) {
       }
     }
   }
-  if(flag){
-    abort();
-  }
   change[move] = '+';
   nowBoard[move] = (player ? 'O' : 'X');
   player = !player;
