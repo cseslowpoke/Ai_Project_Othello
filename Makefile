@@ -16,8 +16,8 @@ MAIN_OBJ = $(MAIN_SRC:%.cpp=obj/%.o)
 NOSDL_MAIN_OBJ = $(NOSDL_MAIN_SRC:%.cpp=obj/%.o)
 
 # 兩個執行檔的名稱
-EXEC1= program1
-EXEC2 = program2
+EXEC1= program1.o
+EXEC2 = program2.o
 
 all: $(EXEC1) $(EXEC2)
 
@@ -35,14 +35,9 @@ obj/%.o: %.cpp
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -c $< -o $@ $(CXXLIBS)
 
-
-
 clean:
 	rm -rf *.o 
 
-noSDL: noSDL_main.cpp
-	$(CXX) -o main.o noSDL_main.cpp 
-	@./main.o
 indent:
 	@clang-format -i agent/*.hpp
 	@clang-format -i agent/utils/*.hpp
