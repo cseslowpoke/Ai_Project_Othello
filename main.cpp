@@ -13,9 +13,8 @@ int main(int argv, char *argc[]) {
   cout << "白方 (0: Dai 1: Hua 2: Yu)：";
   cin >> white;
 
-  player[0] = aiFactor::createAi(YU, 0, NULL, 3, 9);
+  player[0] = aiFactor::createAi(HUA, 0);
   player[1] = aiFactor::createAi(DAI, 1, new normalEvaluation());
-
 
   sdl r;
   board gameBoard;
@@ -39,6 +38,9 @@ int main(int argv, char *argc[]) {
           }
           break;
         }
+      }
+      if (end == true) {
+          continue;
       }
       int move = player[Player]->move(gameBoard.nowBoard);
       Player = !Player;
