@@ -9,7 +9,7 @@ int main(int argv, char *argc[]) {
   cin >> black;
   cout << "白方 (0: Dai 1: Hua 2: Yu)：";
   cin >> white;
-  player[0] = aiFactor::createAi(DAI, 0, new normalEvaluation());
+  player[0] = aiFactor::createAi(DAI, 0);
   player[1] = aiFactor::createAi(HUA, 1);
 
   board gameBoard;

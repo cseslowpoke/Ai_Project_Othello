@@ -5,5 +5,5 @@ enum aiType { DAI, HUA, YU };
 
 class aiFactor {
 public:
-  static ai* createAi(aiType aiType, int way, evaluation* eval = nullptr, int scoreboard = 0, int depth = 3);
+  static ai* createAi(aiType aiType, int way);
 };
