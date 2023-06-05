@@ -8,7 +8,7 @@ int simpleEvaluation::eval(bitboard b) {
 int normalEvaluation::eval(bitboard b) {
   int point = 0;
   int pos;
-  if (!(b.playerBoard ^ b.opponentBoard)) {
+  if (!(~(b.playerBoard | b.opponentBoard))) {
     point = __builtin_popcountll(b.playerBoard) -
             __builtin_popcountll(b.opponentBoard);
     point *= 10000;
