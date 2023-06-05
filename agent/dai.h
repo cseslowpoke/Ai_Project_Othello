@@ -4,8 +4,10 @@
 #include "utils/evaluation.h"
 #include <chrono>
 #include <iostream>
-#include <bits/stdc++.h>
+#include <unordered_map>
 #include <vector>
+#include <utility>
+#include <algorithm>
 class dai : public ai {
 public:
   dai(int _player) : ai(_player) {
@@ -25,7 +27,7 @@ public:
   void name();
   inline int calc_move_ordering_value(const bitboard b);
 private:
-  int depth = 10;
+  int depth = 14;
   evaluation *e;
   std::unordered_map<bitboard, int, bitboard::hash> transpose_table_upper;          
   std::unordered_map<bitboard, int, bitboard::hash> transpose_table_lower;          

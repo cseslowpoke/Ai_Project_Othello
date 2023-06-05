@@ -110,7 +110,7 @@ ull dai::nat_search(bitboard& b) {
   int alpha, beta, score;
   ull ret;
   ull legalBoard = b.makeLegalBoard(), put;
-  std::vector<bitboard> child;
+  std::vector<std::pair<bitboard, ull> > child;
   while(legalBoard != 0) {
     put = legalBoard & (-legalBoard);
     legalBoard ^= put;
@@ -118,7 +118,7 @@ ull dai::nat_search(bitboard& b) {
     tmp.reverse(put);
     tmp.swap();
     tmp.value = calc_move_ordering_value(tmp);
-    child.push_back(tmp);
+    child.push_back({tmp, put});
   }
 
   if(child.size() == 0) {
@@ -129,18 +129,18 @@ ull dai::nat_search(bitboard& b) {
     alpha = -10000000;
     beta = 10000000;
     if (child.size() >= 2) {
-      for (bitboard &b: child) {
+      for (auto &[b, v]: child) {
         b.value = calc_move_ordering_value(b);
       }
     }
-    std::sort(child.begin(), child.end(), [](const bitboard &a, const bitboard &b) {
-      return a.value > b.value;
+    std::sort(child.begin(), child.end(), [](const auto &a, const auto &b) {
+      return a.first.value > b.first.value;
     });
-    for(bitboard& b: child) {
+    for(auto &[b, v]: child) {
       score = -nega_alpha_transpose(b, i - 1, false, -beta, -alpha);
       if(alpha < score) {
         alpha = score;
-        ret = b.policy;
+        ret = v;
       }
     }
     transpose_table_upper.swap(former_transpose_table_upper);

@@ -6,7 +6,6 @@ class bitboard {
 public:
   bool player = 0;
   int value = 0;
-  ull policy = 0;
   ull playerBoard = 0, opponentBoard = 0;
   bitboard() {}
   void setBoard(ull _playerBoard, ull _opponentBoard);

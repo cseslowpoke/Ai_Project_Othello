@@ -38,7 +38,6 @@ void bitboard::reverse(ull put) {
   }
   playerBoard ^= put | rev;
   opponentBoard ^= rev;
-
 }
 
 ull bitboard::makeLegalBoard() {

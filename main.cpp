@@ -15,6 +15,8 @@ int main(int argv, char *argc[]) {
 
   player[0] = aiFactor::createAi(HUA, 0);
   // player[1] = aiFactor::createAi(HUA, 1);
+  // player[0] = aiFactor::createAi(DAI, 0, new normalEvaluation());
+
   player[1] = aiFactor::createAi(DAI, 1, new normalEvaluation());
   // printf("black: %, white: %d\n", black, white);
   player[0]->name();
