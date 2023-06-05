@@ -9,6 +9,8 @@ evaluation* eval_factor::create_eval(eval_type eval_type) {
     return new normal_eval_a();
   case NORMAL_EVAL_B:
     return new normal_eval_b();
+  case NORMAL_EVAL_C:
+    return new normal_eval_c();
   default:
     return nullptr;
   }
