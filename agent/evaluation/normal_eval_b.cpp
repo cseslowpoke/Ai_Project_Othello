@@ -1,11 +1,5 @@
-#include "evaluation.h"
-
-int simpleEvaluation::eval(bitboard b) {
-  return __builtin_popcountll(b.playerBoard) -
-          __builtin_popcountll(b.opponentBoard);
-}
-
-int normalEvaluation::eval(bitboard b) {
+#include "normal_eval_b.h"
+int normal_eval_b::eval(bitboard b) {
   int point = 0;
   int pos;
   if (!(~(b.playerBoard | b.opponentBoard))) {
@@ -24,8 +18,6 @@ int normalEvaluation::eval(bitboard b) {
       point -= weight[pos];
       b.opponentBoard &= b.opponentBoard - 1;
     }
-  }
-
-  
+  }  
   return point;
 }

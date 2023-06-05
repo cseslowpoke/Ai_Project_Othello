@@ -1,19 +1,7 @@
-#pragma once
-#include "bitboard.h"
-class evaluation {
-public:
-  virtual int eval(bitboard b) = 0;
-};
-
-class simpleEvaluation : public evaluation {
+#include "evaluation.h"
+class normal_eval_a : public evaluation {
 public:
   int eval(bitboard b);
-};
-
-class normalEvaluation : public evaluation {
-public:
-  int eval(bitboard b);
-
 private:
   const int weight[64] = {30, -12,  0, -1, -1,  0, -12,  30,
                          -12, -15, -3, -3, -3, -3, -15, -12,

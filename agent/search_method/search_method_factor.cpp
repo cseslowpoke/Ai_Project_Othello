@@ -1,6 +1,6 @@
 #include "search_method_factor.h"
 
-search_method* search_factor::create_method(method_type method_type) {
+search_method* search_factor::create_method(method_type method_type, int eval) {
   std::cout << "create method:" << method_type << std::endl;
   switch(method_type) {
     case NEGA_ALPHA:
