@@ -35,7 +35,7 @@ ull nega_alpha_t::search(bitboard& b) {
   }
 
   for(int i = std::max(1, depth - 3); i <= depth; ++i) {
-    alpha = -10000000;
+    alpha = -100000000;
     beta = 10000000;
     if (child.size() >= 2) {
       for (auto &[b, v]: child) {
