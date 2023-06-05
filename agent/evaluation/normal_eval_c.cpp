@@ -1,4 +1,4 @@
-#include "normal_eval_b.h"
+#include "normal_eval_c.h"
 int normal_eval_c::eval(bitboard b) {
   int point = 0;
   int pos;
