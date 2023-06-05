@@ -10,7 +10,7 @@ public:
   ull search(bitboard& b);
   int search_nega_alpha_t(bitboard &b, int depth, bool passed, int alpha, int beta);
   inline int calc_move_ordering_value(const bitboard& b);
-  const int depth = 11;
+  const int depth = 12;
   evaluation* e = new normal_eval_a();
   std::unordered_map<bitboard, int , bitboard::hash> former_transpose_table;
   std::unordered_map<bitboard, int , bitboard::hash> transpose_table;
