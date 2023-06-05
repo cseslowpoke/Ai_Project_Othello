@@ -7,7 +7,7 @@ ai* aiFactor::createAi(aiType aiType, int way, evaluation *eval, int scoreboard,
     }
     return new dai(way);
   case HUA:
-    return new min_max_monte_carlo(way, 4, 40);
+    return new min_max_monte_carlo(way, 5, 40);
   case YU:
     return new CBplayer(way, 3, 9);
   default:

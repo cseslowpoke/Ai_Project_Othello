@@ -8,15 +8,27 @@ int simpleEvaluation::eval(bitboard b) {
 int normalEvaluation::eval(bitboard b) {
   int point = 0;
   int pos;
-  while(b.playerBoard) {
-    pos = __builtin_ffsll(b.playerBoard) - 1;
-    point += weight[pos];
-    b.playerBoard &= (b.playerBoard - 1);
+  if (b.playerBoard ^ b.opponentBoard) {
+    point = __builtin_popcountll(b.playerBoard) -
+            __builtin_popcountll(b.opponentBoard);
+    if (point >= 0) {
+      return 100000;
+    }
+    else {
+      return -100000;
+    }
   }
-  while(b.opponentBoard) {
-    pos = __builtin_ffsll(b.opponentBoard) - 1;
-    point -= weight[pos];
-    b.opponentBoard &= b.opponentBoard - 1;
+  else {
+    while(b.playerBoard) {
+      pos = __builtin_ffsll(b.playerBoard) - 1;
+      point += weight[pos];
+      b.playerBoard &= (b.playerBoard - 1);
+    }
+    while(b.opponentBoard) {
+      pos = __builtin_ffsll(b.opponentBoard) - 1;
+      point -= weight[pos];
+      b.opponentBoard &= b.opponentBoard - 1;
+    }
   }
   // for(int i = 0; i < 64; i++) {
   //   if(b.playerBoard & (1ULL << i)) {
