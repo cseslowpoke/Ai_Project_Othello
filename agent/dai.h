@@ -12,7 +12,7 @@ class dai : public ai {
 public:
   dai(int _player) : ai(_player) {
     player = _player;
-    search = search_factor::create_method(NEGA_ALPHA_T);
+    search = search_factor::create_method(NEGA_ALPHA);
   }
   int move(std::string board);
   void name();
