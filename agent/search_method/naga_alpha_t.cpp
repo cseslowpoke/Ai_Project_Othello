@@ -1,17 +1,14 @@
 #include "naga_alpha_t.h"
 
 
-inline int nega_alpha_t::calc_move_ordering_value(const bitboard b) {
+inline int nega_alpha_t::calc_move_ordering_value(const bitboard& b) {
     int res;
     if (former_transpose_table.find(b) != former_transpose_table.end()) {
-        // 前回の探索で上限値が格納されていた場合
-        res = cache_hit_bonus - former_transpose_table[b];
+      res = cache_hit_bonus - former_transpose_table[b];
     } else if (former_transpose_table.find(b) != former_transpose_table.end()) {
-        // 前回の探索で下限値が格納されていた場合
-        res = cache_hit_bonus - former_transpose_table[b];
+      res = cache_hit_bonus - former_transpose_table[b];
     } else {
-        // 前回の探索で枝刈りされた
-        res = -e->eval(b);
+      res = -e->eval(b);
     }
     return res;
 }
