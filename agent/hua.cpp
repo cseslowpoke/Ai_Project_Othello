@@ -95,12 +95,12 @@ int min_max_monte_carlo::monte_carlo(bitboard gb) {
     ull corner = 0x8100000000000081;
     int player_corner = __builtin_popcountll(gb.playerBoard & corner);
     int oppo_corner = __builtin_popcountll(gb.opponentBoard & corner);
-    int tp = (player_corner - oppo_corner) * monte_carlo_times*20; 
+    //int tp = (player_corner - oppo_corner) * monte_carlo_times*20; 
     if(min_max_depth&1){
-        score-=tp;
+        score-=oppo_corner*monte_carlo_times*20;
     }
     else{
-        score+=tp;
+        score+=player_corner*monte_carlo_times*20;
     }
 
     return score;
