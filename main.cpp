@@ -16,12 +16,10 @@ int main(int argv, char *argc[]) {
   player[0]->name();
   cout << "white: ";
   player[1]->name();
-
   sdl r;
-  board gameBoard;
+  board gameBoard = board();
   bool quit = false;
   int Player = 0;
-
   r.init();
   while (true) {
     SDL_Event event;
@@ -34,6 +32,7 @@ int main(int argv, char *argc[]) {
     }
     start = chrono::system_clock::now();
     int move = player[Player]->move(gameBoard.nowBoard);
+    cerr << move << '\n';
     end = chrono::system_clock::now();
     if (move == -1) {
       Player = !Player;

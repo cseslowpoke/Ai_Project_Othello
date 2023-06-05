@@ -14,6 +14,7 @@ inline int nega_alpha_t::calc_move_ordering_value(const bitboard& b) {
 }
 
 ull nega_alpha_t::search(bitboard& b) {
+
   int alpha, beta, score;
   ull ret;
   ull legalBoard = b.makeLegalBoard(), put;
@@ -29,7 +30,6 @@ ull nega_alpha_t::search(bitboard& b) {
     tmp.value = calc_move_ordering_value(tmp);
     child.push_back({tmp, put});
   }
-
   if(child.size() == 0) {
     return 0;
   }

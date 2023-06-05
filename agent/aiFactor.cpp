@@ -1,6 +1,5 @@
 #include "aiFactor.h"
 ai* aiFactor::createAi(aiType aiType, int way, int method, int eval)  {
-  std::cout << "create ai:" << aiType << std::endl;
   switch (aiType) {
   case DAI:
     return new dai(way, method, eval);

@@ -3,6 +3,7 @@ void dai::name() {
   std::cout << "DAI" << std::endl;
 }
 int dai::move(std::string checker) {
+
   ull black = 0, white = 0;
   bitboard b;
   for (int i = 0; i < 64; i++) {
@@ -17,6 +18,7 @@ int dai::move(std::string checker) {
   } else {
     b.setBoard(black, white);
   }
+
   ull put = search->search(b);
   return __builtin_ffsll(put) - 1;
 }

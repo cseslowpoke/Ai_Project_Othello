@@ -1,4 +1,4 @@
-
+#include "board.h"
 void board::move(int move) {
   change = "----------------------------------------------------------------";
   if (move == -1) {
