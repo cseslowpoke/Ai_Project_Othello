@@ -67,8 +67,6 @@ int nega_alpha_t::search_nega_alpha_t(bitboard &b, int depth, bool passed, int a
   if (transpose_table.find(b) != transpose_table.end()) {
     return transpose_table[b];
   }
-
-
   ull legalBoard = b.makeLegalBoard(), put;
   std::vector<bitboard> child;
   while(legalBoard != 0) {
@@ -89,10 +87,6 @@ int nega_alpha_t::search_nega_alpha_t(bitboard &b, int depth, bool passed, int a
     tmp.swap();
     return -search_nega_alpha_t(tmp, depth, true, -beta, -alpha);
   }
-
-  std::sort(child.begin(), child.end(), [](const bitboard &a, const bitboard &b) {
-    return a.value > b.value;
-  });
 
   if(child.size() >= 2) {
     sort(child.begin(), child.end(), [](const bitboard &a, const bitboard &b){
