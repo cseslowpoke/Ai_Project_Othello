@@ -1,6 +1,6 @@
 #include "dai.h"
 void dai::name() {
-  std::cout << "dai2" << std::endl;
+  std::cout << "dai" << std::endl;
 }
 int dai::move(std::string checker) {
   ull black = 0, white = 0;

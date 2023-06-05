@@ -66,7 +66,6 @@ int CBplayer::move(std::string board)
 }
 
 vector< pair<int,int> > CBplayer::getSearchOrder(const vector<vector<int>> & board){
-
     vector<pair<int,int>> rt;
     if(strategy == NORMAL){
         rt = normal_table;
@@ -144,7 +143,7 @@ int CBplayer::dfs(vector<vector<int>>& check,int me,int who,int round,int nono,i
 
     vector<pair<int,int>> order = getSearchOrder(check);
 
-    for(int k=0;k<order.size();k++){
+    for(int k=0;k<(int)order.size();k++){
         int i = order[k].first, j = order[k].second;
         
         vector<vector<int>> dulCheck = check;

@@ -6,6 +6,8 @@ void min_max_monte_carlo::name() {
   cout << "hua" << endl;
 }
 int min_max_monte_carlo::move(std::string board_){
+    chrono::system_clock::time_point start, end;
+    start = chrono::system_clock::now();
     bitboard gb;
     char mine, oppo;
     if (player == BLACK)
@@ -24,7 +26,8 @@ int min_max_monte_carlo::move(std::string board_){
         return -1;
 
     pair<int, int> res = minimax(gb, min_max_depth, MX, -DBL_MAX, DBL_MAX);
-
+    end = chrono::system_clock::now();
+    cout << "time:" << chrono::duration_cast<chrono::milliseconds>(end - start).count() << '\n';
     return res.first;
 }
 
