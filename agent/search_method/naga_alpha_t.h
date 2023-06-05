@@ -5,12 +5,13 @@
 #define cache_hit_bonus 1000
 class nega_alpha_t : public search_method {
 public:
-  nega_alpha_t() {}
+  nega_alpha_t(): search_method() {}
+  nega_alpha_t(int eval) : search_method(eval) {}
   ull search(bitboard& b);
   int search_nega_alpha_t(bitboard &b, int depth, bool passed, int alpha, int beta);
   inline int calc_move_ordering_value(const bitboard& b);
   const int depth = 11;
-  evaluation* e = new normalEvaluation();
+  evaluation* e = new normal_eval_a();
   std::unordered_map<bitboard, int , bitboard::hash> former_transpose_table;
   std::unordered_map<bitboard, int , bitboard::hash> transpose_table;
 };

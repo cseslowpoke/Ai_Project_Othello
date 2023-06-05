@@ -1,5 +1,4 @@
 #include "agent/aiFactor.h"
-#include "agent/utils/evaluation.h"
 #include "utils/board.h"
 #include "utils/render.h"
 #include <chrono>
@@ -17,7 +16,6 @@ int main(int argv, char *argc[]) {
   player[0]->name();
   cout << "white: ";
   player[1]->name();
-  // player[1] = aiFactor::createAi(DAI, 1, new normalEvaluation());
 
   sdl r;
   board gameBoard;

@@ -5,6 +5,7 @@ CXXLIBS = $(shell pkg-config --libs sdl2)
 # SRC = $(wildcard *.cpp) $(wildcard */*.cpp) $(wildcard */*/*.cpp) $(wildcard */*/*/*.cpp)
 OBJ = $(SRC:%.cpp=obj/%.o)
 SRC = $(filter-out main.cpp noSDL_main.cpp, $(wildcard *.cpp) $(wildcard */*.cpp) $(wildcard */*/*.cpp) $(wildcard */*/*/*.cpp))
+
 EXEC = main.o
 
 # 兩個主程式的 .cpp 檔案
@@ -24,12 +25,18 @@ all: $(EXEC1) $(EXEC2)
 $(EXEC1): $(OBJ) $(MAIN_OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(CXXLIBS)
 
-$(EXEC2): $(OBJ) $(NOSDL_MAIN_OBJ)
-	$(CXX) -Wall -o $@ $^ $(CXXLIBS)
+$(EXEC2): $(filter-out obj/utils/render.o, $(OBJ)) $(NOSDL_MAIN_OBJ)
+	$(CXX) -Wall -o $@ $^ 
+
+obj/main.o: main.cpp
+	$(CXX) $(CXXFLAGS)  -c $< -o $@  $(CXXLIBS)
+
+obj/utils/render.o: utils/render.cpp
+	$(CXX) $(CXXFLAGS)  -c $< -o $@  $(CXXLIBS)
 
 obj/%.o: %.cpp
 	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) -c $< -o $@ $(CXXLIBS)
+	$(CXX)  -c $< -o $@ 
 
 clean:
 	rm -rf *.o 
