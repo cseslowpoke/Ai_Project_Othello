@@ -11,7 +11,6 @@ int main(int argv, char *argc[]) {
   cin >> white;
   player[0] = aiFactor::createAi(DAI, 0);
   player[1] = aiFactor::createAi(HUA, 1);
-
   board gameBoard;
   bool end = false;
   int Player = 0;

@@ -17,10 +17,6 @@ int dai::move(std::string checker) {
   } else {
     b.setBoard(black, white);
   }
-  std::chrono::system_clock::time_point start, end;
-  start = std::chrono::system_clock::now();
   ull put = search->search(b);
-  end = std::chrono::system_clock::now();
-  std::cout << "time:" << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << '\n';
   return __builtin_ffsll(put) - 1;
 }

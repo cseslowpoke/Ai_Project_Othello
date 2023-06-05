@@ -1,6 +1,6 @@
 #include "naga_alpha_t.h"
 #include "nega_alpha.h"
-
+#include <iostream>
 enum method_type {NEGA_ALPHA, NEGA_ALPHA_T};
 
 class search_factor {
