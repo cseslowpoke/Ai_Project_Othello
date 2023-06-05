@@ -27,7 +27,7 @@ public:
   void name();
   inline int calc_move_ordering_value(const bitboard b);
 private:
-  int depth = 14;
+  int depth = 9;
   evaluation *e;
   std::unordered_map<bitboard, int, bitboard::hash> transpose_table_upper;          
   std::unordered_map<bitboard, int, bitboard::hash> transpose_table_lower;          

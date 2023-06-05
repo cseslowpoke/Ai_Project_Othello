@@ -1,5 +1,5 @@
 #include "dai.h"
-#define cache_hit_bonus 1000  
+#define cache_hit_bonus 100 
 int vis = 0;
 void dai::name() {
   std::cout << "dai2" << std::endl;
@@ -26,10 +26,10 @@ int dai::move(std::string checker) {
   }
   std::chrono::system_clock::time_point start, end;
   start = std::chrono::system_clock::now();
-  ull put = nat_search(b);
+  ull put = na_search(b);
   end = std::chrono::system_clock::now();
-  // std::cout << "time:" << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << '\n';
-  // std::cout << "vis:" << vis << '\n';
+  std::cout << "time:" << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << '\n';
+  std::cout << "vis:" << vis << '\n';
   for (int i = 0; i < 64; i++) {
     if (put & (1ULL << i)) {
       std::cout << i << '\n';
@@ -144,6 +144,7 @@ ull dai::nat_search(bitboard& b) {
       }
     }
     transpose_table_upper.swap(former_transpose_table_upper);
+    transpose_table_upper.clear();
   }
   return ret;
 }

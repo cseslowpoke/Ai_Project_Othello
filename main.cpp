@@ -1,7 +1,7 @@
-#include "agent/aiFactor.hpp"
+#include "agent/aiFactor.h"
 #include "agent/utils/evaluation.h"
-#include "utils/board.hpp"
-#include "utils/render.hpp"
+#include "utils/board.h"
+#include "utils/render.h"
 int main(int argv, char *argc[]) {
   ai *player[2];
   int isGui = 0;
@@ -50,7 +50,6 @@ int main(int argv, char *argc[]) {
           continue;
       }
       int move = player[Player]->move(gameBoard.nowBoard);
-      std::cout << move << '\n';
       Player = !Player;
       if (move == -1) {
         move = player[Player]->move(gameBoard.nowBoard);

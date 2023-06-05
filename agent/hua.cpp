@@ -100,7 +100,6 @@ double min_max_monte_carlo::monte_carlo(bitboard gb) {
 }
 
 int min_max_monte_carlo::stimulate(bitboard gb) {
-  ull blank_gb;
   int swap_cnt = 0;
   while (!gameOver(gb)) {
     ull legalBoard = gb.makeLegalBoard();

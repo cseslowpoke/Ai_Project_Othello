@@ -25,7 +25,7 @@ $(EXEC1): $(OBJ) $(MAIN_OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(CXXLIBS)
 
 $(EXEC2): $(OBJ) $(NOSDL_MAIN_OBJ)
-	$(CXX) -Wall -o $@ $^
+	$(CXX) -Wall -o $@ $^ $(CXXLIBS)
 
 obj/%.o: %.cpp
 	@mkdir -p $(@D)
