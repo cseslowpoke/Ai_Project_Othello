@@ -14,7 +14,14 @@ int main(int argv, char *argc[]) {
   cin >> white;
 
   player[0] = aiFactor::createAi(HUA, 0);
+  // player[1] = aiFactor::createAi(HUA, 1);
+  // player[0] = aiFactor::createAi(DAI, 0, new normalEvaluation());
+
   player[1] = aiFactor::createAi(DAI, 1, new normalEvaluation());
+  // printf("black: %, white: %d\n", black, white);
+  player[0]->name();
+  player[1]->name();
+  // player[1] = aiFactor::createAi(DAI, 1, new normalEvaluation());
 
   sdl r;
   board gameBoard;
@@ -43,6 +50,7 @@ int main(int argv, char *argc[]) {
           continue;
       }
       int move = player[Player]->move(gameBoard.nowBoard);
+      std::cout << move << '\n';
       Player = !Player;
       if (move == -1) {
         move = player[Player]->move(gameBoard.nowBoard);

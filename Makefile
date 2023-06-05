@@ -1,5 +1,5 @@
 CXX = g++-13
-CXXFLAGS = $(shell pkg-config --cflags sdl2) -Wall 
+CXXFLAGS = $(shell pkg-config --cflags sdl2) -Wall -std=c++17
 CXXLIBS = $(shell pkg-config --libs sdl2)
 
 # SRC = $(wildcard *.cpp) $(wildcard */*.cpp) $(wildcard */*/*.cpp) $(wildcard */*/*/*.cpp)
@@ -33,6 +33,7 @@ obj/%.o: %.cpp
 
 clean:
 	rm -rf *.o 
+	rm -rf obj
 
 indent:
 	@clang-format -i agent/*.hpp
