@@ -4,7 +4,8 @@
 #include "utils/evaluation.h"
 #include <chrono>
 #include <iostream>
-#include <map>
+#include <bits/stdc++.h>
+#include <vector>
 class dai : public ai {
 public:
   dai(int _player) : ai(_player) {
@@ -16,12 +17,19 @@ public:
     player = _player;
   }
   int move(std::string board);
+  ull na_search(bitboard& b);
   int nega_alpha(bitboard &b, int depth, bool passed, int alpha, int beta);
+  ull nat_search(bitboard& b);
+  int nega_alpha_transpose(bitboard &b, int depth, bool passed, int alpha, int beta);
+  int nega_scout(bitboard &b, int depth, bool passed, int alpha, int beta);
   void name();
+  inline int calc_move_ordering_value(const bitboard b);
 private:
   int depth = 10;
   evaluation *e;
-  // unordered_map<board, int, board::hash> transpose_table;         
-  // unordered_map<board, int, board::hash> former_transpose_table;   
+  std::unordered_map<bitboard, int, bitboard::hash> transpose_table_upper;          
+  std::unordered_map<bitboard, int, bitboard::hash> transpose_table_lower;          
+  std::unordered_map<bitboard, int, bitboard::hash> former_transpose_table_upper; 
+  std::unordered_map<bitboard, int, bitboard::hash> former_transpose_table_lower;     
 };
 

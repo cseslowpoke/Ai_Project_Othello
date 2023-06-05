@@ -5,7 +5,7 @@ enum aiType { DAI, HUA, YU };
 
 class aiFactor {
 public:
-  static ai *createAi(aiType aiType, int way, evaluation *eval = NULL, int scoreboard = NULL, int depth=3) {
+  static ai *createAi(aiType aiType, int way, evaluation *eval = NULL, int scoreboard = 0, int depth=3) {
     switch (aiType) {
     case DAI:
       if (eval != NULL) {
@@ -13,9 +13,9 @@ public:
       }
       return new dai(way);
     case HUA:
-      return new min_max_monte_carlo(way, 4, 40);
+      return new min_max_monte_carlo(way, 4, 100);
     case YU:
-      return new CBplayer(way, scoreboard, depth);
+      return new CBplayer(way, 3, 9);
     default:
       return new dai(way);
     }
