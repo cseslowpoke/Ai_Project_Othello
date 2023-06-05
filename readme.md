@@ -8,6 +8,7 @@ usage:
 
 ```
 make
+./program1.o
 ```
 
 ScreenShot：
