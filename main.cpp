@@ -7,16 +7,13 @@ int main(int argv, char *argc[]) {
   int black, white;
   cout << "黑方 (0: Dai 1: Hua 2: Yu)：";
   cin >> black;
+  player[0] = aiFactor::createAi((aiType)black, 0);
   cout << "白方 (0: Dai 1: Hua 2: Yu)：";
   cin >> white;
-
-  player[0] = aiFactor::createAi(HUA, 0);
-  // player[1] = aiFactor::createAi(HUA, 1);
-  // player[0] = aiFactor::createAi(DAI, 0, new normalEvaluation());
-
-  player[1] = aiFactor::createAi(DAI, 1);
-  // printf("black: %, white: %d\n", black, white);
+  player[1] = aiFactor::createAi((aiType)white, 1);
+  cout << "black: ";
   player[0]->name();
+  cout << "white: ";
   player[1]->name();
   // player[1] = aiFactor::createAi(DAI, 1, new normalEvaluation());
 
