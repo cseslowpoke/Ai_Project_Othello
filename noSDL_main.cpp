@@ -1,7 +1,7 @@
 // #include "utils/render.hpp"
-#include "agent/aiFactor.hpp"
+#include "agent/aiFactor.h"
 #include "agent/utils/evaluation.h"
-#include "utils/board.hpp"
+#include "utils/board.h"
 int main(int argv, char *argc[]) {
   ai *player[2];
   int black, white;

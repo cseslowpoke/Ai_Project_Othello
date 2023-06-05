@@ -1,4 +1,3 @@
-#pragma once
 #include "CBplayer.h"
 int CBplayer::getHeuristicScore(vector<vector<int>> &check, int who)
 {
