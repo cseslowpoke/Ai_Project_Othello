@@ -1,7 +1,6 @@
 #include "hua.h"
 
 
-
 void min_max_monte_carlo::name() {
   cout << "hua" << endl;
 }
@@ -40,63 +39,72 @@ bool min_max_monte_carlo::gameOver(bitboard gb)
     return false;
 }
 
-double min_max_monte_carlo::heuristic(bitboard gb) {
-    return (double)monte_carlo(gb) / (double)monte_carlo_times;
+pair<int, int> min_max_monte_carlo::minimax(bitboard gb, int depth, int mode, int l_lim, int r_lim) {
+    if (depth == 0 || gameOver(gb)){
+        return make_pair(0, monte_carlo(gb));
+    }
+    if (gb.makeLegalBoard() == 0) { // passturn 
+        gb.swap();
+        return minimax(gb, depth - 1, 1 - mode, l_lim, r_lim);
+    }
+    pair<int, int> res, tp;
+    if (mode == MX){
+        res = make_pair(0, -INF);
+    }
+    else{
+        res = make_pair(0, INF);
+    }
+    ull legalBoard = gb.makeLegalBoard();
+    while (legalBoard > 0) {
+        int pos = __builtin_ffsll(legalBoard) - 1;
+        bitboard nxtgb;
+        nxtgb.playerBoard = gb.playerBoard;
+        nxtgb.opponentBoard = gb.opponentBoard;
+        nxtgb.reverse(1ULL << pos);
+        nxtgb.swap();
+        tp = minimax(nxtgb, depth - 1, 1 - mode, l_lim, r_lim);
+        tp.first = pos;
+        if (mode == MX){
+            if (tp.second > res.second){
+                res = tp;
+            }
+        
+            if (res.second >= r_lim){
+                return res;
+            }
+            l_lim = max(l_lim, res.second);
+        }
+        else{
+            if (tp.second < res.second){
+                res = tp;
+            }
+            if (res.second <= l_lim){
+                return res;
+            }
+            r_lim = min(r_lim, res.second);
+        }
+        legalBoard &= (legalBoard - 1);
+    }
+    return res;
 }
 
-pair<int, double> min_max_monte_carlo::minimax(bitboard gb, int depth, int mode, double l_lim, double r_lim) {
-  if (depth == 0 || gameOver(gb))
-      return make_pair(0, heuristic(gb));
-  if (gb.makeLegalBoard() == 0) { // passturn 
-      gb.swap();
-      return minimax(gb, depth - 1, 1 - mode, l_lim, r_lim);
-  }
-  pair<int, double> res, tp;
-  if (mode == MX)
-      res = make_pair(0, -DBL_MAX);
-  else
-      res = make_pair(0, DBL_MAX);
-  double res_arr[8][8];
-  memset(res_arr, 0, sizeof(res_arr));
-  ull legalBoard = gb.makeLegalBoard();
+int min_max_monte_carlo::monte_carlo(bitboard gb) {
+   int score = 0;
+    for (int i = 0; i < monte_carlo_times; i++){
+        score += stimulate(gb);
+    }
+    ull corner = 0x8100000000000081;
+    int player_corner = __builtin_popcountll(gb.playerBoard & corner);
+    int oppo_corner = __builtin_popcountll(gb.opponentBoard & corner);
+    int tp = (player_corner - oppo_corner) * monte_carlo_times*20; 
+    if(min_max_depth&1){
+        score-=tp;
+    }
+    else{
+        score+=tp;
+    }
 
-  while (legalBoard > 0) {
-      int pos = __builtin_ffsll(legalBoard) - 1;
-      bitboard nxtgb;
-      nxtgb.playerBoard = gb.playerBoard;
-      nxtgb.opponentBoard = gb.opponentBoard;
-      nxtgb.reverse(1ULL << pos);
-      nxtgb.swap();
-      tp = minimax(nxtgb, depth - 1, 1 - mode, l_lim, r_lim);
-      tp.first = pos;
-      res_arr[pos / 8][pos % 8] = tp.second;
-      if (mode == MX)
-      {
-          if (tp.second > res.second)
-              res = tp;
-          if (res.second >= r_lim)
-              return res;
-          l_lim = max(l_lim, res.second);
-      }
-      else
-      {
-          if (tp.second < res.second)
-              res = tp;
-          if (res.second <= l_lim)
-              return res;
-          r_lim = min(r_lim, res.second);
-      }
-      legalBoard &= (legalBoard - 1);
-  }
-  return res;
-}
-
-double min_max_monte_carlo::monte_carlo(bitboard gb) {
-  int score = 0;
-  for (int i = 0; i < monte_carlo_times; i++) {
-    score += stimulate(gb);
-  }
-  return (double)score / (double)monte_carlo_times;
+    return score;
 }
 
 int min_max_monte_carlo::stimulate(bitboard gb) {

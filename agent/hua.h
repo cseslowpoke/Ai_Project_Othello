@@ -16,9 +16,8 @@ public:
     void name();
     int move(std::string board_);
     bool gameOver(bitboard gb);
-    double heuristic(bitboard gb);
-    pair<int, double> minimax(bitboard gb, int depth, int mode, double l_lim, double r_lim);
-    double monte_carlo(bitboard gb);
+    pair<int, int> minimax(bitboard gb, int depth, int mode, int l_lim, int r_lim);
+    int monte_carlo(bitboard gb);
     int stimulate(bitboard gb);
 
 private:
@@ -26,4 +25,5 @@ private:
     int monte_carlo_times = 100;
     const int BLACK = 0, WHITE = 1;
     const int MX = 0, MN = 1;
+    const int INF = 0x3f3f3f3f;
 };
