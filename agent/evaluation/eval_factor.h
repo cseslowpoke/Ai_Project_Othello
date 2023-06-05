@@ -5,7 +5,7 @@
 #include "simple_eval.h"
 
 
-enum eval_type {SIMPLE_EVAL, NORMAL_EVAL_A, NORMAL_EVAL_B};
+enum eval_type {SIMPLE_EVAL, NORMAL_EVAL_A, NORMAL_EVAL_B, NORMAL_EVAL_C};
 
 class eval_factor {
 public:

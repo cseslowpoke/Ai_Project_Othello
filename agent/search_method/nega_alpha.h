@@ -7,5 +7,5 @@ public:
   ull search(bitboard& b);
   int search_nega_alpha(bitboard &b, int depth, bool passed, int alpha, int beta);
   const int depth = 10;
-  evaluation* e = new normal_eval_a();
+  evaluation* e;
 };

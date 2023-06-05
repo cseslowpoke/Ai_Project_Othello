@@ -1,6 +1,7 @@
 #include "eval_factor.h"
 
 evaluation* eval_factor::create_eval(eval_type eval_type) {
+  std::cout << "create eval:" << eval_type << std::endl;
   switch (eval_type)
   {
   case SIMPLE_EVAL:

@@ -1,4 +1,4 @@
-CXX = g++
+CXX = g++-13
 CXXFLAGS = $(shell pkg-config --cflags sdl2) -Wall -std=c++17
 CXXLIBS = $(shell pkg-config --libs sdl2)
 
@@ -18,7 +18,7 @@ NOSDL_MAIN_OBJ = $(NOSDL_MAIN_SRC:%.cpp=obj/%.o)
 
 # 兩個執行檔的名稱
 EXEC1= program1.o
-EXEC2 = program2.exe
+EXEC2 = program2.o
 
 all: $(EXEC1) $(EXEC2)
 
@@ -26,7 +26,7 @@ $(EXEC1): $(OBJ) $(MAIN_OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(CXXLIBS)
 
 $(EXEC2): $(filter-out obj/utils/render.o, $(OBJ)) $(NOSDL_MAIN_OBJ)
-	$(CXX) -std=c++17 -Wall -o $@ $^ 
+	$(CXX) -Wall -std=c++17 -Wall -o $@ $^ 
 
 obj/main.o: main.cpp
 	$(CXX) $(CXXFLAGS)  -c $< -o $@  $(CXXLIBS)
@@ -36,7 +36,7 @@ obj/utils/render.o: utils/render.cpp
 
 obj/%.o: %.cpp
 	@mkdir -p $(@D)
-	$(CXX) -std=c++17 -c $< -o $@ 
+	$(CXX) -Wall -std=c++17 -c $< -o $@ 
 
 clean:
 	rm -rf *.o 
