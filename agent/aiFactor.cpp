@@ -1,10 +1,7 @@
 #include "aiFactor.h"
-ai* aiFactor::createAi(aiType aiType, int way, evaluation *eval, int scoreboard,  int depth)  {
+ai* aiFactor::createAi(aiType aiType, int way)  {
   switch (aiType) {
   case DAI:
-    if (eval != NULL) {
-      return new dai(way, eval);
-    }
     return new dai(way);
   case HUA:
     return new min_max_monte_carlo(way, 5, 40);
