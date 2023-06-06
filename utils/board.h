@@ -14,9 +14,9 @@ public:
   void game();
   std::string nowBoard;
   std::string change;
+  int player;
 
 private:
-  int player;
   const int dir[8][2] = {{-1, 0}, {-1, 1}, {0, 1},  {1, 1},
                          {1, 0},  {1, -1}, {0, -1}, {-1, -1}};
   // const int dir[8] = {-8, -7, 1, 9, 8, 7, -1, -9};

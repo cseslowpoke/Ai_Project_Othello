@@ -2,7 +2,8 @@
 #include <unordered_map>
 #include <vector>
 
-#define cache_hit_bonus 1000
+#define cache_hit_bonus 500
+#define inf 100000000
 class nega_alpha_t : public search_method {
 public:
   nega_alpha_t(): search_method() {}

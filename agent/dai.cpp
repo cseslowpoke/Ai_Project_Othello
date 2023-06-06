@@ -3,7 +3,6 @@ void dai::name() {
   std::cout << "DAI" << std::endl;
 }
 int dai::move(std::string checker) {
-
   ull black = 0, white = 0;
   bitboard b;
   for (int i = 0; i < 64; i++) {

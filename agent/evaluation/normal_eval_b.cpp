@@ -1,6 +1,6 @@
 #include "normal_eval_b.h"
 int normal_eval_b::eval(bitboard b) {
-    if(b.playerBoard == 0) return -100000000;
+  if(b.playerBoard == 0) return -100000000;
   int point = 0;
   int pos;
   if (!(~(b.playerBoard | b.opponentBoard))) {
